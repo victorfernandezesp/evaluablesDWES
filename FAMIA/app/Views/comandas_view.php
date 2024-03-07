@@ -158,7 +158,11 @@
     </header>
 
     <main>
-        
+            <!-- BOTON PARA CERRAR SESION -->
+            <form action="/close_session" method="post">
+                <input type="submit" value="Cerrar Sesion">
+            </form>
+            <br/>
             <div class="mostrar">
                 <?php
                 $directorio = opendir("comandas");
@@ -175,10 +179,12 @@
                         echo "</p>";
                         echo "</div>";
                         fclose($comanda);
-                        echo "<form action='/completado' method='post'>";
-                        echo "<input type='submit' value='Realizado'>";
-                        echo "<input type='hidden' name='comanda' value='$archivo'>";
-                        echo "</form>";
+                        if (strpos($archivo, "pendiente") !== false) {
+                            echo "<form action='/completado' method='post'>";
+                            echo "<input type='hidden' name='comanda' value='" . $archivo . "'>";
+                            echo "<input type='submit' value='Completado'>";
+                            echo "</form>";
+                        }
                     }
                 }
                     

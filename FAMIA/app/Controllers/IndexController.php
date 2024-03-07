@@ -37,8 +37,13 @@ class IndexController extends BaseController
     }
     public function cierraAction()
     {
-        session_destroy();
-        header("Location: carrito");
+        unset($_SESSION['perfil']);
+        header("Location: /login");
     }
 
+    public function vaciaCarritoAction()
+    {
+        unset($_SESSION["carrito"]);
+        header("Location: carrito");
+    }
 }

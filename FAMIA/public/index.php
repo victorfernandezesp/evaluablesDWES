@@ -54,6 +54,14 @@ $router->add(
 );
 $router->add(
     array(
+        "name" => "Vacia Carrito",
+        "path" => "/^\/vacia_carrito$/",
+        "action" => [IndexController::class, "vaciaCarritoAction"],
+        "auth" => ["invitado", "usuario"]
+    )
+);
+$router->add(
+    array(
         "name" => "crearTicketYComanda",
         "path" => "/^\/crearTicketYComanda$/",
         "action" => [CarritoController::class, "crearTicketYComanda"],
@@ -73,7 +81,7 @@ $router->add(
         "name" => "comandas",
         "path" => "/^\/comanda$/",
         "action" => [ComandasController::class, "comandasAction"],
-        "auth" => ["invitado", "usuario"]
+        "auth" => ["usuario"]
     )
 );
 $router->add(
@@ -81,7 +89,7 @@ $router->add(
         "name" => "completado",
         "path" => "/^\/completado$/",
         "action" => [ComandasController::class, "completadoAction"],
-        "auth" => ["invitado", "usuario"]
+        "auth" => ["usuario"]
     )
 );
 

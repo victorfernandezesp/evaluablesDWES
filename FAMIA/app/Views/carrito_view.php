@@ -221,7 +221,7 @@
         }
         echo "<p>Total: " . $total . " €</p>";
         echo "<a href='http://famia.local/crearTicketYComanda'> Tramitar Pedido </a>";
-        echo "<a href='http://famia.local/close_session'> Vaciar Carrito</a>";
+        echo "<a href='http://famia.local/vacia_carrito'> Vaciar Carrito</a>";
         echo "</div>";
         ?>
     </main>
