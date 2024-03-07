@@ -1,0 +1,9 @@
+faMia
+Pedido | Fecha: 04/03/2024 19:10:45
+---------------------------------
+Nombre: Bacon Crispy Gourmet | Cantidad: 4 | pequeña | Precio: 5 | Precio Total: 20
+Nombre: Lata el Aguila 1900 | Cantidad: 5 | Precio: 1.5 | Precio Total: 7.5
+---------------------------------
+Total: 27.5 €
+---------------------------------
+Gracias por su compra

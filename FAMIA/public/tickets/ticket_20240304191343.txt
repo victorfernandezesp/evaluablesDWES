@@ -1,0 +1,9 @@
+faMia
+Pedido | Fecha: 04/03/2024 19:13:43
+---------------------------------
+Nombre: Barbacoa Gourmet | Cantidad: 3 | pequeña | Precio: 5 | Precio Total: 15
+Nombre: Barbacoa Pulled pork | Cantidad: 4 | pequeña | Precio: 5 | Precio Total: 20
+---------------------------------
+Total: 35 €
+---------------------------------
+Gracias por su compra

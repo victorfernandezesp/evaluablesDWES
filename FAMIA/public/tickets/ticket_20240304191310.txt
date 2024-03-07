@@ -1,0 +1,9 @@
+faMia
+Pedido | Fecha: 04/03/2024 19:13:10
+---------------------------------
+Nombre: Bacon Crispy Gourmet | Cantidad: 5 | pequeña | Precio: 5 | Precio Total: 25
+Nombre: Extrema de Queso Caramelizada | Cantidad: 1 | pequeña | Precio: 5 | Precio Total: 5
+---------------------------------
+Total: 30 €
+---------------------------------
+Gracias por su compra

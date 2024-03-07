@@ -1,0 +1,8 @@
+faMia
+Pedido | Fecha: 04/03/2024 19:14:38
+---------------------------------
+Nombre: Bacon Crispy Gourmet | Cantidad: 4 | pequeña | Precio: 5 | Precio Total: 20
+---------------------------------
+Total: 20 €
+---------------------------------
+Gracias por su compra
