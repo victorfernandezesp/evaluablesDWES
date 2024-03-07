@@ -1,0 +1,13 @@
+<ul>
+  <h2>Todos los contactos</h2>
+  <li *ngFor="let item of contactos">
+    <p> <span class="nombre"> Nombre: {{item.nombre}} </span> 
+      <span class="telefono"> Teléfono: {{item.telefono}}</span> 
+      <span class="email"> Email: {{item.email}} </span> 
+      <span class="contenedor"> 
+        <button (click)="eliminarContacto(item?.id)" class="boton">Eliminar</button>
+        <button (click)="editarContacto(item?.id)" class="boton">Editar</button>
+      </span>
+    </p>
+  </li>
+</ul>

@@ -1,0 +1,21 @@
+<h3 class="custom-heading">
+    Añadir Contacto
+</h3>
+<form class="custom-form" (submit)="onSubmit()">
+    <label for="nombre">Nombre:</label>
+    <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="contactoData.nombre" required>
+
+    <br>
+
+    <label for="telefono">Telefono:</label>
+    <input type="text" class="form-control" id="telefono" name="telefono" [(ngModel)]="contactoData.telefono" required>
+
+    <br>
+
+    <label for="email">Email:</label>
+    <input type="email" class="form-control" id="email" name="email" [(ngModel)]="contactoData.email" required>
+
+    <br><br>
+
+    <button type="submit" class="btn btn-primary custom-submit-button">Crear contacto</button>
+</form>

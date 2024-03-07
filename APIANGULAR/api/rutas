@@ -1,0 +1,14 @@
+/: ContactosController::indexAction
+/login
+/cierresesion
+/contactos: ContactosController::indexAction
+/contactos/add: ContactosController::addAction
+/contactos/edit/id
+/contactos/del/id
+/usuarios UsuariosController::indexAction
+/usuarios/add: UsuariosController::addAction
+/usuarios/edit/id 
+/usuarios/del/id 
+
+
+Perfiles de usuarios: invitado, usuario
