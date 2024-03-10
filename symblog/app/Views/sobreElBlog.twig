@@ -1,0 +1,50 @@
+{% extends "layout.twig" %}
+
+{% block nav %}
+	<nav>
+		<ul class="navigation">
+			<li>
+				<a href="/">Home</a>
+			</li>
+			<li>
+				<a href="/about">About
+				</a>
+			</li>
+			{% if profile == "Invitado" %}
+				<li>
+					<a href="/login">Login</a>
+				</li>
+			{% else %}
+				<li>
+					<a href="/contactos">Contact</a>
+				</li>
+				<li>
+					<a href="/admin">Admin</a>
+				</li>
+				<li>
+					<a href="/logout">Logout</a>
+				</li>
+			{% endif %}
+		</ul>
+	</nav>
+
+{% endblock %}
+
+{% block body %}
+	<h1>Sobre este blog</h1>
+	<p>
+		Symblog, un software de terceros innovador, ha transformado por completo nuestro proyecto de
+		    grado en desarrollo web. Este blog creado con Symblog ha brindado una experiencia de usuario
+		    excepcional, con su interfaz intuitiva y herramientas personalizables. Desde la facilidad de 
+		    diseño hasta las opciones de gestión de contenido, Symblog ha demostrado ser una elección acertada.
+		    Su integración perfecta con nuestro desarrollo web ha mejorado la eficiencia y permitido una 
+		    expansión rápida del contenido. Estamos entusiasmados por los resultados que este contacto 
+		    ha generado, destacando la importancia de elegir herramientas poderosas y versátiles en el 
+		    mundo del desarrollo web.
+	</p>
+
+{% endblock %}
+
+{% block sidebar %}
+	{% include "sidebar.twig" %}
+{% endblock %}

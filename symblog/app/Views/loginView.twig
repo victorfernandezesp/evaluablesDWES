@@ -1,0 +1,47 @@
+{% extends "layout.twig" %}
+
+{% block nav %}
+	<nav>
+		<ul class="navigation">
+			<li>
+				<a href="/">Home</a>
+			</li>
+			<li>
+				<a href="/about">About
+				</a>
+			</li>
+			{% if profile == "Invitado" %}
+				<li>
+					<a href="/login">Login</a>
+				</li>
+			{% else %}
+				<li>
+					<a href="/contactos">Contact</a>
+				</li>
+				<li>
+					<a href="/admin">Admin</a>
+				</li>
+				<li>
+					<a href="/logout">Logout</a>
+				</li>
+			{% endif %}
+		</ul>
+	</nav>
+
+{% endblock %}
+
+{% block body %}
+	<h1>Inicia Sesión</h1>
+
+	{% if cookie is not null %}
+		<div class="blogger-notice">Usuario creado con éxito.</div>
+	{% endif %}
+
+	<form action="login" method="post" enctype="multipart/form-data">
+		<label for="Email">Email:</label><br>
+		<input type="text" id="email" name="email"><br>
+		<label for="author">Password:</label><br>
+		<input type="password" id="password" name="password"><br><br>
+		<input type="submit" value="Submit">
+	</form>
+</body></html>{% endblock %}{% block sidebar %}{% include "sidebar.twig" %}{% endblock %}
