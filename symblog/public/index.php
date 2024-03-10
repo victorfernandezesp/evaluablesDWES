@@ -39,11 +39,13 @@ $rutas->get("blogForm", "/blogs", [BlogsController::class, "blogsAction"]);
 $rutas->get("formuser", "/register", [UserController::class, "userAction"]);
 $rutas->get("admin", "/admin", [AdminController::class, "indexAction", 'auth' => true]);
 $rutas->get("LoginUserForm", "/login", [AuthController::class, "loginAction"]);
+$rutas->get("showBlog","/show", [BlogsController::class,"showAction"]);
 $rutas->get("logout", "/logout", [AuthController::class, "logoutAction", 'auth' => true]);
 
 $rutas->post("addBlog", "/blogs", [BlogsController::class, "blogsAction", 'auth' => true]);
 $rutas->post("addUser", "/register", [UserController::class, "userAction", 'auth' => true]);
 $rutas->post("lognUser", "/login", [AuthController::class, "loginAction"]);
+$rutas->post("AddComment", "/show", [BlogsController::Class, "showAction", "auth"=>true]);
 
 // Encuentra la ruta coincidente con la solicitud
 $route = $router->getMatcher()->match($request);

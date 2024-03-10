@@ -1,36 +1,79 @@
 <?php
-namespace App\Models;
+    namespace App\Models;
+    use Illuminate\Database\Eloquent\Model as Eloquent;
+    use App\Models\Comment;
 
-use Illuminate\Database\Eloquent\Model as Eloquent;
-use Illuminate\Capsule\Manager as Capsule;
-use App\Models\Comment;
+    class Blog extends Eloquent{
+        protected $table = "blog";
+        const CREATED_AT = "created";
+        const UPDATED_AT = "updated";
+        protected $fillable = ["id", "title", "author", "blog", "image", "tags", "created", "updated"];
 
-class Blog extends Eloquent
-{
+        public function comment() {
+            return $this->hasMany(Comment::class);
+        }
 
-    protected $table = "blog";
+        public function getComments() {
+            $comments = [];
+            foreach (Blog::find($this->id)->comment as $comment) {
+                $comments[] = $comment;
+            }
+            return $comments;
+        }
 
-    const CREATED_AT = "created";
-    const UPDATED_AT = "updated";
+        public function numComments() {
+            return count(Blog::find($this->id)->comment);        
+        }
 
-    protected $fillable = ["id", "title", "author", "blog", "image", "tags", "created", "updated"];
-
-    // Relación uno a muchos con el modelo Comment
-    public function comments()
-    {
-        return $this->hasMany(Comment::class);
+        public static function getAllTags() {
+            $allTags = [];
+    
+            foreach (Blog::all() as $blog) {
+                foreach (explode(", ", $blog->tags) as $tag) {
+                    if (!in_array($tag, $allTags)) $allTags[] = $tag;
+                }
+            }
+    
+            return $allTags;
+        }
+        
+        public static function countTag($tag) {
+            $count = 0;
+            foreach (Blog::all() as $blog) {
+                if (in_array($tag, explode(", ", $blog->tags))) $count++;
+            }
+            return $count;
+        }
+    
+        public static function printTags() {
+            $tags = "";
+            foreach (Blog::getAllTags() as $tag) {
+                if (Blog::countTag($tag) >= 5) {
+                    $tags .= "<span class=\"weight-5\">".$tag."</span><br>";
+                } else $tags .= "<span class=\"weight-".Blog::countTag($tag)."\">".$tag."</span><br>";            
+            }
+    
+            return $tags;
+        }
+    
+        public static function getAllComments($blogs) {
+            $allComments = [];
+            foreach ($blogs as $blog) {
+                foreach ($blog->comment as $comment) {
+                    $allComments[] = [
+                        'comment' => $comment->comment,
+                        'user' => $comment->user,
+                        'created' => $comment->created,
+                        'blogId' => $blog->id,
+                        'blogTitle' => $blog->title,
+                    ];
+                }
+            }
+    
+            usort($allComments, function ($a, $b) {
+                return strtotime($a['created']) - strtotime($b['created']);
+            });
+    
+            return $allComments;
+        }
     }
-
-    // Obtener todos los comentarios asociados a este blog
-    public function getComments()
-    {
-        return $this->comments;
-    }
-
-    // Obtener el número de comentarios asociados a este blog
-    public function numComments()
-    {
-        return $this->comments ? count($this->comments) : 0;
-    }
-}
-?>

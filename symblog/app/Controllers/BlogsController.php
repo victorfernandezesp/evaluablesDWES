@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use App\Models\Blog;
 use \Respect\Validation\Validator as v;
+use App\Models\Comment;
 
 class BlogsController extends BaseController {
     
@@ -56,5 +57,40 @@ class BlogsController extends BaseController {
         // Renderiza la plantilla de formulario para agregar blogs con los datos proporcionados
         return $this->renderHTML("addBlog.twig", $data);
     }
+    public function showAction($request) {
+        if ($request->getMethod() == "POST"){
+            $validador = v::key('comment', v::stringType()->notEmpty());
+            try {
+                $validador->assert($request->getParsedBody());
+                $comment = Comment::create([
+                    'blog_id' => $_GET["id"],
+                    'user' => $_SESSION['user']->user,
+                    'comment' => $request->getParsedBody()['comment'],
+                    'approved' => 1
+                ]);
+                $comment->save();
+            }
+            catch(\Exception $e) {}
+        }
+
+        $data["blog"] = Blog::find($_GET["id"]);
+        $data["allComments"] = array_reverse(array_slice(Blog::getAllComments(Blog::all()), -5));
+        $data["tags"] = Blog::printTags();
+
+        $user = ($_SESSION["user"] !== "Invitado") ? $_SESSION["user"]->user : "Invitado";
+        $email = ($_SESSION["user"] !== "Invitado") ? $_SESSION["user"]->email : "Invitado";
+        $profile = ($_SESSION["perfil"] !== "Invitado") ? $_SESSION["user"]->profile : "Invitado";
+
+        return $this->renderHTML("verMas_view.twig", [
+            "blog" => $data["blog"],
+            "allComments" => $data["allComments"],
+            "tags" => $data["tags"],
+            "comments" => array_reverse($data["blog"]->getComments()),
+            "numComments" => count($data["blog"]->getComments()),
+            "profile" => $profile,
+            "user" => $user,
+            "email" => $email
+        ]);
+    }
 }
-?>
+
